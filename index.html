@@ -1,37 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>Energy Monitoring Dashboard</title>
+<title>แดชบอร์ดพลังงาน - สจล. ชุมพร</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;500;700&display=swap');
+
+/* พื้นหลังอวกาศ */
 body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#f5f5f5;
+margin:0;
+font-family:'Prompt',sans-serif;
+color:white;
+text-align:center;
+overflow-x:hidden;
+background: radial-gradient(ellipse at bottom, #0b1d3a 0%, #020617 100%);
 }
 
-h2{
-    text-align:center;
-    padding:10px;
+/* ดาวเล็กๆ */
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+radial-gradient(2px 2px at 20% 30%, white, transparent),
+radial-gradient(2px 2px at 80% 40%, white, transparent),
+radial-gradient(1px 1px at 50% 70%, white, transparent),
+radial-gradient(2px 2px at 90% 10%, white, transparent),
+radial-gradient(1px 1px at 10% 80%, white, transparent),
+radial-gradient(2px 2px at 60% 20%, white, transparent);
+z-index:-2;
+}
+
+/* ดาวตก */
+.shooting-star{
+position:fixed;
+top:-10px;
+left:50%;
+width:3px;
+height:80px;
+background:linear-gradient(-45deg,white,rgba(255,255,255,0));
+opacity:0.8;
+transform:rotate(45deg);
+animation:shoot 6s linear infinite;
+z-index:-1;
+}
+
+.shooting-star:nth-child(2){
+left:20%;
+animation-delay:2s;
+}
+
+.shooting-star:nth-child(3){
+left:70%;
+animation-delay:4s;
+}
+
+@keyframes shoot{
+0%{
+transform:translate(0,0) rotate(45deg);
+opacity:1;
+}
+100%{
+transform:translate(-800px,800px) rotate(45deg);
+opacity:0;
+}
+}
+
+/* header ล้ำๆ */
+.header{
+padding:40px 20px;
+background:linear-gradient(180deg,#020617,#020617,#081a36);
+position:relative;
+overflow:hidden;
+box-shadow:0 0 40px rgba(0,150,255,0.4);
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* ดาวใน header */
+.header::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+radial-gradient(2px 2px at 20% 30%,white,transparent),
+radial-gradient(2px 2px at 80% 40%,white,transparent),
+radial-gradient(1px 1px at 60% 20%,white,transparent),
+radial-gradient(2px 2px at 40% 70%,white,transparent);
+opacity:0.4;
+animation:twinkle 4s infinite alternate;
+}
+
+/* ตัวอักษรหัวข้อ */
+.header h1{
+margin:0;
+font-size:48px;
+font-weight:700;
+letter-spacing:2px;
+color:#ffffff;
+
+text-shadow:
+0 0 10px #00d9ff,
+0 0 20px #00d9ff,
+0 0 40px #00aaff,
+0 0 60px #0088ff;
+
+animation:glow 3s ease-in-out infinite alternate;
+}
+
+.header p{
+margin-top:12px;
+font-size:18px;
+color:#cbd5f5;
+letter-spacing:1px;
+
+text-shadow:
+0 0 8px rgba(0,200,255,0.7);
+}
+
+/* เอฟเฟค glow */
+@keyframes glow{
+from{
+text-shadow:
+0 0 10px #00d9ff,
+0 0 20px #00aaff;
+}
+to{
+text-shadow:
+0 0 20px #00ffff,
+0 0 40px #00aaff,
+0 0 60px #0077ff;
+}
+}
+
+/* ดาวกระพริบ */
+@keyframes twinkle{
+0%{opacity:0.2;}
+100%{opacity:0.7;}
+}
+
+/* รูปตึก */
+.building{
+margin:30px auto;
+width:95%;
+max-width:1600px;
+}
+
+.building img{
+width:100%;
+height:450px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* grafana */
+.dashboard{
+width:95%;
+margin:auto;
 }
 
 iframe{
-    width:100%;
-    height:95vh;
-    border:none;
+width:100%;
+height:1200px;
+border:none;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
-</style>
 
+</style>
 </head>
 
 <body>
 
-<h2>Energy Monitoring Dashboard</h2>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
 
-<iframe
-src="https://tire-movies-desired-dans.trycloudflare.com/public-dashboards/b39bd92209cd4da19f38ea30a37b92ca/d/YOUR-DASHBOARD-ID/dashboard-name?orgId=1&kiosk">
+<div class="header">
+<h1> Electric Energy Monitoring System </h1>
+<p>ระบบติดตามและวิเคราะห์การใช้พลังงานไฟฟ้า</p>
+</div>
+
+<div class="building">
+<img src="B.png">
+</div>
+
+<div class="dashboard">
+
+<iframe 
+src="https://volvo-crest-bookmarks-approach.trycloudflare.com/d/4c8f69ef-6364-4226-9650-0664dc07b4f7/a">
 </iframe>
+
+</div>
 
 </body>
 </html>
